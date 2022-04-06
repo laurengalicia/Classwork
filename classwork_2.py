@@ -1,4 +1,7 @@
 def make_adjacency_list(*args):
+    '''
+    @args: Each arg is a tuple composed of a node-pair and a direction, like (1, 2, '->'), representing an edge in a directed graph.
+    '''
     adjacency_list = dict()
     for arg in args:
         for i in range(2):
@@ -68,3 +71,6 @@ class AdjacencyMatrix(AdjacencyStructure):
             return max([(sum([1 for col in row if col > 0]), i) for i, row in enumerate(self.graph)])[1]
         if direction == '<-':
             return max([(sum([1 for row in self.graph if row[i] > 0]), i ) for i in range(len(self.graph))])[1]
+        if direction == '<>':
+            return max([(sum([1 for row in self.graph if row[i] > 0]) + sum([1 for col in node if col > 0]), i ) for i, node in enumerate(self.graph)])[1]
+
